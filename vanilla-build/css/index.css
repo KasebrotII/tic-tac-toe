@@ -23,6 +23,14 @@ body {
   background-color: var(--dark-gray);
 }
 
+body {
+  padding: 90px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 80px);
@@ -30,7 +38,20 @@ body {
     gap: 5px;
 }
 
-.grid div {
-    background-color: red;
-    margin: 10px;
+.turn {
+    background-color: green;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.square {
+  background-color: red;
+}
+
+.score {
+  background-color: blue;
+}
+
+.actions {
+  background-color: purple;
 }
