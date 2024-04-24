@@ -13,8 +13,6 @@ const App = {
 
     init() {
 
-        console.log(App.$.squares);
-
         App.$.menu.addEventListener("click", (event) => {
             App.$.menuItems.classList.toggle('hidden');
         });
@@ -25,6 +23,12 @@ const App = {
 
         App.$.newRoundBtn.addEventListener('click', event =>{
             console.log("Start the next round")
+        });
+
+        App.$.squares.forEach(square => {
+            square.addEventListener('click', event => {
+                console.log(`Square with id ${event.target.id} was clicked`);
+            });
         });
     },
 };
