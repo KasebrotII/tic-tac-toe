@@ -36,13 +36,16 @@ const App = {
             console.log("Start the next round")
         });
 
-        App.$.squares.forEach(square => {
-            square.addEventListener('click', event => {
-                console.log(`Square with id ${event.target.id} was clicked`);
-                console.log(`Current player is ${App.state.currentPlayer}`);
+        App.$.squares.forEach((square) => {
+            square.addEventListener('click', (event) => {
 
                 // Check if there is already a play, if so, return early
-                if (square.hasChildNodes()) {
+                const hasMove = (squareId) => {
+                    const existingMove = App.state.moves.find(move => move.squareId === squareId)
+                    return existingMove !== undefined
+                }
+
+                if (hasMove(+square.id)) {
                     return;
                 }
 
