@@ -50,7 +50,7 @@ const App = {
                 const icon = document.createElement('i');
 
                 if (currentPlayer === 1) {
-                    icon.classList.add('fa-solid', 'fa-x', 'yellow');
+                    icon.classList.add('fa-solid', 'fa-x', 'dark-red');
                 } else {
                     icon.classList.add('fa-solid', 'fa-o', 'turquoise');
                 }
