@@ -12,7 +12,7 @@ const App = {
     },
 
     state: {
-        currentPlayer: 1,
+        moves: [],
     },
 
     init() {
@@ -41,24 +41,50 @@ const App = {
                 console.log(`Square with id ${event.target.id} was clicked`);
                 console.log(`Current player is ${App.state.currentPlayer}`);
 
+                // Check if there is already a play, if so, return early
                 if (square.hasChildNodes()) {
                     return;
                 }
 
-                const currentPlayer = App.state.currentPlayer;
+                // Determine which palyer icon to add to the square
+                const lastMove = App.state.moves.at(-1)
+                const getOppositePlayer = (playerId) => playerId === 1 ? 2 : 1
+                const currentPlayer = App.state.moves.length === 0 
+                ? 1 
+                : getOppositePlayer(lastMove.playerId);
 
                 const icon = document.createElement('i');
 
                 if (currentPlayer === 1) {
-                    icon.classList.add('fa-solid', 'fa-x', 'dark-red');
+                    icon.classList.add('fa-solid', 'fa-x', 'yellow');
                 } else {
                     icon.classList.add('fa-solid', 'fa-o', 'turquoise');
                 }
 
-                App.state.currentPlayer = App.state.currentPlayer === 1 ? 2 : 1;
+                App.state.moves.push({
+                    squareId: +square.id,
+                    playerId: currentPlayer
+                });
+
+                App.state.currentPlayer = currentPlayer === 1 ? 2 : 1;
+
+                console.log(App.state)
+
+
 
                 square.replaceChildren(icon);
 
+                // Check to see if there is a winner or a tie game.
+                const winningPatterns = [
+                    [1, 2, 3],
+                    [1, 5, 9],
+                    [1, 4, 7],
+                    [2, 5, 8],
+                    [3, 5, 7],
+                    [3, 6, 9],
+                    [4, 5, 6],
+                    [7, 8, 9],
+                  ];
             });
         });
     }
