@@ -105,9 +105,15 @@ const App = {
                 square.replaceChildren(icon);
 
                 // Check to see if there is a winner or a tie game.
-                const status = App.getGamesStatus(App.state.moves)
+                const game = App.getGamesStatus(App.state.moves)
 
-                console.log(status)
+                if (game.status === "complete") {
+                    if (game.winner) {
+                        alert(`Player ${game.winner} wins!`);
+                    } else {
+                        alert("Tie!");
+                    }
+                }
             });
         });
     }
