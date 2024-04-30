@@ -13,5 +13,16 @@ export default class View {
         this.$.modalText = document.querySelector('[data-id="modal-text"]')
         this.$.modalBtn = document.querySelector('[data-id="modal-btn"]')
         this.$.turn = document.querySelector('[data-id="turn"]')
+
     }
+
+    bindGameResetEvent(handler) {
+        this.$.resetBtn.addEventListener("click", handler);
+        this.$.modalBtn.addEventListener("click", handler);
+      }
+    
+      bindNewRoundEvent(handler) {
+        this.$.newRoundBtn.addEventListener("click", handler);
+      }
+    
 }
