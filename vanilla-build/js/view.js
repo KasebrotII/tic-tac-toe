@@ -16,7 +16,13 @@ export default class View {
 
     }
 
-    bindGameResetEvent(handler) {
+
+      //Placeholder
+      bindMenuEvent(handler) {
+        this.$.menu.addEventListener("click", handler);
+      }
+
+      bindGameResetEvent(handler) {
         this.$.resetBtn.addEventListener("click", handler);
         this.$.modalBtn.addEventListener("click", handler);
       }
