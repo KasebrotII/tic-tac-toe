@@ -21,6 +21,9 @@ export default class View {
       bindMenuEvent(handler) {
         this.$.menu.addEventListener("click", handler);
       }
+      bindSquares(handler) {
+        this.$.square.addEventListener("click", handler);
+      }
 
       bindGameResetEvent(handler) {
         this.$.resetBtn.addEventListener("click", handler);
