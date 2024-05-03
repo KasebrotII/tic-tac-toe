@@ -14,16 +14,12 @@ export default class View {
         this.$.modalBtn = document.querySelector('[data-id="modal-btn"]')
         this.$.turn = document.querySelector('[data-id="turn"]')
 
+        // UI-only event listeners
+        this.$.menuItems.addEventListener('click', event => {
+          this.$.menuItems.classList.toggle("hidden");
+        });
     }
 
-
-      //Placeholder
-      bindMenuEvent(handler) {
-        this.$.menu.addEventListener("click", handler);
-      }
-      bindSquares(handler) {
-        this.$.square.addEventListener("click", handler);
-      }
 
       bindGameResetEvent(handler) {
         this.$.resetBtn.addEventListener("click", handler);
@@ -32,6 +28,12 @@ export default class View {
     
       bindNewRoundEvent(handler) {
         this.$.newRoundBtn.addEventListener("click", handler);
+      }
+
+      bindPlayerMoveEvent(handler) {
+        this.$.squares.forEach((square) => {
+          square.addEventListener("click", handler);
+        });
       }
     
 }
