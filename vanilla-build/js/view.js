@@ -5,6 +5,7 @@ export default class View {
 
     constructor() {
         this.$.menu = document.querySelector('[data-id="menu"]')
+        this.$.menuBtn = document.querySelector('[data-id="menu-btn"]')
         this.$.menuItems = document.querySelector('[data-id="menu-items"]')
         this.$.resetBtn = document.querySelector('[data-id="reset-btn"]')
         this.$.newRoundBtn = document.querySelector('[data-id="new-round-btn"]')
@@ -15,10 +16,14 @@ export default class View {
         this.$.turn = document.querySelector('[data-id="turn"]')
 
         // UI-only event listeners
-        this.$.menuItems.addEventListener('click', event => {
-          this.$.menuItems.classList.toggle("hidden");
+        this.$.menuBtn.addEventListener('click', event => {
+          this.toggleMene()
         });
     }
+
+    /**
+     * Register all the event listeners
+     */
 
 
       bindGameResetEvent(handler) {
@@ -35,5 +40,13 @@ export default class View {
           square.addEventListener("click", handler);
         });
       }
+
+    /**
+     * DOM helper methods
+     */
+    toggleMene() {
+      this.$.menuItems.classList.toggle("hidden");
+      this.$.menuBtn.classList.toggle("border");
+    }
     
 }
