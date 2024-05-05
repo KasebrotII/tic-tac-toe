@@ -166,7 +166,6 @@ function init() {
         console.log(event);
     });
 
-    console.log(view.$.turn)
 }
 
 window.addEventListener('load', init);
