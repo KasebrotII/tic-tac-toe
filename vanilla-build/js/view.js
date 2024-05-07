@@ -10,13 +10,13 @@ export default class View {
         this.$.menuItems = this.#qs('[data-id="menu-items"]');
         this.$.resetBtn = this.#qs('[data-id="reset-btn"]');
         this.$.newRoundBtn = this.#qs('[data-id="new-round-btn"]');
-        this.$.squares = this.#qsAll('[data-id="square"]');
         this.$.modal = this.#qs('[data-id="modal"]');
         this.$.modalText = this.#qs('[data-id="modal-text"]');
         this.$.modalBtn = this.#qs('[data-id="modal-btn"]');
         this.$.turn = this.#qs('[data-id="turn"]');
 
-        this.$$.squares = this.#qs('[data-id="square"]');
+        this.$$.squares = this.#qsAll('[data-id="square"]');
+
 
         // UI-only event listeners
         this.$.menuBtn.addEventListener('click', event => {
@@ -39,7 +39,7 @@ export default class View {
       }
 
       bindPlayerMoveEvent(handler) {
-        this.$.squares.forEach((square) => {
+        this.$$.squares.forEach((square) => {
           square.addEventListener("click", handler);
         });
       }
@@ -55,6 +55,21 @@ export default class View {
 
       icon.classList.toggle("fa-chevron-down");
       icon.classList.toggle("fa-chevron-up");
+    }
+
+    // player = 1 | 2
+    setTurnIndicator(player) {
+      const icon = document.createElement('i');
+      const label = document.createElement('p');
+
+      this.$.turn.classList.add(player === 1 ? 'yellow' : 'turquoise');
+      this.$.turn.classList.remove(player === 1 ? 'turquoise' : 'yellow');
+
+      icon.classList.add(player === 1 ? 'fa-x' : 'fa-o');
+
+      label.innerText = player === 1 ? "Player 1, you're up!" : "Player 2, you're up!"
+
+      this.$.turn.replaceChildren(icon, label);
     }
 
     #qs(selector, parent) {
