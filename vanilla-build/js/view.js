@@ -1,94 +1,93 @@
 export default class View {
 
-    $ = {};
-    $$ = {};
+  $ = {};
+  $$ = {};
 
 
-    constructor() {
-        this.$.menu = this.#qs('[data-id="menu"]');
-        this.$.menuBtn = this.#qs('[data-id="menu-btn"]');
-        this.$.menuItems = this.#qs('[data-id="menu-items"]');
-        this.$.resetBtn = this.#qs('[data-id="reset-btn"]');
-        this.$.newRoundBtn = this.#qs('[data-id="new-round-btn"]');
-        this.$.modal = this.#qs('[data-id="modal"]');
-        this.$.modalText = this.#qs('[data-id="modal-text"]');
-        this.$.modalBtn = this.#qs('[data-id="modal-btn"]');
-        this.$.turn = this.#qs('[data-id="turn"]');
+  constructor() {
+    this.$.menu = this.#qs('[data-id="menu"]');
+    this.$.menuBtn = this.#qs('[data-id="menu-btn"]');
+    this.$.menuItems = this.#qs('[data-id="menu-items"]');
+    this.$.resetBtn = this.#qs('[data-id="reset-btn"]');
+    this.$.newRoundBtn = this.#qs('[data-id="new-round-btn"]');
+    this.$.modal = this.#qs('[data-id="modal"]');
+    this.$.modalText = this.#qs('[data-id="modal-text"]');
+    this.$.modalBtn = this.#qs('[data-id="modal-btn"]');
+    this.$.turn = this.#qs('[data-id="turn"]');
 
-        this.$$.squares = this.#qsAll('[data-id="square"]');
-
-
-        // UI-only event listeners
-        this.$.menuBtn.addEventListener('click', event => {
-          this.#toggleMenu()
-        });
-    }
-
-    /**
-     * Register all the event listeners
-     */
+    this.$$.squares = this.#qsAll('[data-id="square"]');
 
 
-      bindGameResetEvent(handler) {
-        this.$.resetBtn.addEventListener("click", handler);
-        this.$.modalBtn.addEventListener("click", handler);
-      }
-    
-      bindNewRoundEvent(handler) {
-        this.$.newRoundBtn.addEventListener("click", handler);
-      }
+    // UI-only event listeners
+    this.$.menuBtn.addEventListener('click', event => {
+      this.#toggleMenu()
+    });
+  }
 
-      bindPlayerMoveEvent(handler) {
-        this.$$.squares.forEach((square) => {
-          square.addEventListener("click", handler);
-        });
-      }
+  /**
+   * Register all the event listeners
+   */
 
-    /**
-     * DOM helper methods
-     */
-    #toggleMenu() {
-      this.$.menuItems.classList.toggle("hidden");
-      this.$.menuBtn.classList.toggle("border");
 
-      const icon = this.$.menuBtn.querySelector('i');
+  bindGameResetEvent(handler) {
+    this.$.resetBtn.addEventListener("click", handler);
+    this.$.modalBtn.addEventListener("click", handler);
+  }
 
-      icon.classList.toggle("fa-chevron-down");
-      icon.classList.toggle("fa-chevron-up");
-    }
+  bindNewRoundEvent(handler) {
+    this.$.newRoundBtn.addEventListener("click", handler);
+  }
 
-    // player = 1 | 2
-    setTurnIndicator(player) {
-      const icon = document.createElement('i');
-      const label = document.createElement('p');
-      const body = document.createElement('p');
+  bindPlayerMoveEvent(handler) {
+    this.$$.squares.forEach((square) => {
+      square.addEventListener("click", handler);
+    });
+  }
 
-      this.$.turn.classList.add(player === 1 ? 'yellow' : 'turquoise');
-      this.$.turn.classList.remove(player === 1 ? 'turquoise' : 'yellow');
+  /**
+   * DOM helper methods
+   */
+  #toggleMenu() {
+    this.$.menuItems.classList.toggle("hidden");
+    this.$.menuBtn.classList.toggle("border");
 
-      icon.classList.add(player === 1 ? 'fa-x' : 'fa-o');
+    const icon = this.$.menuBtn.querySelector('i');
 
-      label.innerText = player === 1 ? "Player 1, you're up!" : "Player 2, you're up!"
+    icon.classList.toggle("fa-chevron-down");
+    icon.classList.toggle("fa-chevron-up");
+  }
 
-      this.$.turn.replaceChildren(icon, label);
-    }
+  // player = 1 | 2
+  setTurnIndicator(player) {
+    const icon = document.createElement('i');
+    const label = document.createElement('p');
 
-    #qs(selector, parent) {
-      const el = parent 
+    this.$.turn.classList.add(player === 1 ? 'yellow' : 'turquoise');
+    this.$.turn.classList.remove(player === 1 ? 'turquoise' : 'yellow');
+
+    icon.classList.add(player === 1 ? 'fa-x' : 'fa-o');
+
+    label.innerText = player === 1 ? "Player 1, you're up!" : "Player 2, you're up!"
+
+    this.$.turn.replaceChildren(icon, label);
+  }
+
+  #qs(selector, parent) {
+    const el = parent
       ? parent.querySelector(selector)
       : document.querySelector(selector);
 
-      if(!el) throw new Error('Could not find elements');
+    if (!el) throw new Error('Could not find elements');
 
-        return el;
-    }
+    return el;
+  }
 
-    #qsAll(selector) {
-      const elList = document.querySelectorAll(selector);
+  #qsAll(selector) {
+    const elList = document.querySelectorAll(selector);
 
-      if(!elList) throw new Error('Could not find elements');
+    if (!elList) throw new Error('Could not find elements');
 
-        return elList;
-    }
-    
+    return elList;
+  }
+
 }
