@@ -60,6 +60,7 @@ export default class View {
   // player = 1 | 2
   setTurnIndicator(player) {
     const icon = document.createElement('i');
+    const icon2 = document.createElement('i');
     const label = document.createElement('p');
 
     this.$.turn.classList.add(player === 1 ? 'yellow' : 'turquoise');
