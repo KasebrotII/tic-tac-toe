@@ -61,7 +61,6 @@ export default class View {
   setTurnIndicator(player) {
     const icon = document.createElement('i');
     const label = document.createElement('p');
-    const label2 = document.createElement('p');
 
     this.$.turn.classList.add(player === 1 ? 'yellow' : 'turquoise');
     this.$.turn.classList.remove(player === 1 ? 'turquoise' : 'yellow');
